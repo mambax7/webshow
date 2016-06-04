@@ -1,5 +1,5 @@
 <?php
-// $Id: article.php,v 1.1.1.1 2005/11/10 19:51:06 phppp Exp $
+// 
 // ------------------------------------------------------------------------ //
 // This program is free software; you can redistribute it and/or modify     //
 // it under the terms of the GNU General Public License as published by     //
@@ -25,76 +25,75 @@
 // Project: Article Project                                                 //
 // ------------------------------------------------------------------------ //
 /**
- * @package module::article
+ * @package   module::article
  * @copyright copyright &copy; 2005 XoopsForge.com
  */
 
-if (!defined("XOOPS_ROOT_PATH")) {
-	exit();
-}
+// defined('XOOPS_ROOT_PATH') || exit('XOOPS root path not defined');
 
-if(!class_exists("ArtObject")) {
-	//require_once(XOOPS_ROOT_PATH."/modules/".$GLOBALS["xoopsModule"]->getVar("dirname")."/class/object.php");
-	require_once(XOOPS_ROOT_PATH."/modules/webshow/class/object.php");
+if (!class_exists('ArtObject')) {
+    //require_once(XOOPS_ROOT_PATH."/modules/".$GLOBALS["xoopsModule"]->getVar("dirname")."/class/object.php");
+    require_once(XOOPS_ROOT_PATH . '/modules/webshow/class/object.php');
 }
 
 /**Webshow
- *  
- * From Article Module by phppp
- * @author D.J. (phppp)
- * @copyright copyright &copy; 2005 XoopsForge.com
- * @package module::article
  *
- * {@link XoopsObject} 
+ * From Article Module by phppp
+ * @author    D.J. (phppp)
+ * @copyright copyright &copy; 2005 XoopsForge.com
+ * @package   module::article
+ *
+ * {@link XoopsObject}
  **/
 
-if(!class_exists("Wslinks")){
-  class Wslinks extends ArtObject
-  {
-    /**
-
-    /**
-     * Constructor
-     *
-     * @param int $id ID of the article
-     */
-
-    function Wslinks($id = null)
+if (!class_exists('Wslinks')) {
+    class Wslinks extends XoopsObject
     {
-	  $this->ArtObject("webshow_links");
-        $this->initVar('lid', XOBJ_DTYPE_INT);
-        $this->initVar('cid', XOBJ_DTYPE_INT);
-        $this->initVar('title', XOBJ_DTYPE_TXTBOX);
-        $this->initVar('url', XOBJ_DTYPE_TXTBOX);
-        $this->initVar('srctype', XOBJ_DTYPE_TXTBOX);
-        $this->initVar('listtype', XOBJ_DTYPE_TXTBOX);
-        $this->initVar('listurl', XOBJ_DTYPE_TXTBOX);                
-        $this->initVar('logourl', XOBJ_DTYPE_TXTBOX);
-        $this->initVar('submitter', XOBJ_DTYPE_INT);
-        $this->initVar('status', XOBJ_DTYPE_INT);
-        $this->initVar('date', XOBJ_DTYPE_INT);
-        $this->initVar('hits', XOBJ_DTYPE_INT);
-        $this->initVar('rating', XOBJ_DTYPE_OTHER);
-        $this->initVar('votes', XOBJ_DTYPE_INT);
-        $this->initVar('comments', XOBJ_DTYPE_INT);
-        $this->initVar('player', XOBJ_DTYPE_INT);
-        $this->initVar('credit2', XOBJ_DTYPE_TXTBOX);
-        $this->initVar('cachetime', XOBJ_DTYPE_INT);
-        $this->initVar('expired', XOBJ_DTYPE_INT);
-        $this->initVar('published', XOBJ_DTYPE_INT);
-        $this->initVar('listcache', XOBJ_DTYPE_TXTBOX);
-        $this->initVar('entryperm', XOBJ_DTYPE_TXTBOX); 
-        $this->initVar('credit1', XOBJ_DTYPE_TXTBOX);                        
-        $this->initVar('credit3', XOBJ_DTYPE_TXTBOX);
-        $this->initVar('showinfo', XOBJ_DTYPE_TXTBOX);
-    }
-  }
+        /**
+         *
+         * /**
+         * Constructor
+         *
+         * @param int $id ID of the article
+         */
 
-  class webshowWslinksHandler extends ArtObjectHandler
-  {
-      function webshowWslinksHandler(&$db) {
-        $this->ArtObjectHandler($db, 'webshow_links', 'Wslinks', 'lid', 'title');
-      }
-   }
+        public function __construct($id = null)
+        {
+            $this->ArtObject('webshow_links');
+            $this->initVar('lid', XOBJ_DTYPE_INT);
+            $this->initVar('cid', XOBJ_DTYPE_INT);
+            $this->initVar('title', XOBJ_DTYPE_TXTBOX);
+            $this->initVar('url', XOBJ_DTYPE_TXTBOX);
+            $this->initVar('srctype', XOBJ_DTYPE_TXTBOX);
+            $this->initVar('listtype', XOBJ_DTYPE_TXTBOX);
+            $this->initVar('listurl', XOBJ_DTYPE_TXTBOX);
+            $this->initVar('logourl', XOBJ_DTYPE_TXTBOX);
+            $this->initVar('submitter', XOBJ_DTYPE_INT);
+            $this->initVar('status', XOBJ_DTYPE_INT);
+            $this->initVar('date', XOBJ_DTYPE_INT);
+            $this->initVar('hits', XOBJ_DTYPE_INT);
+            $this->initVar('rating', XOBJ_DTYPE_OTHER);
+            $this->initVar('votes', XOBJ_DTYPE_INT);
+            $this->initVar('comments', XOBJ_DTYPE_INT);
+            $this->initVar('player', XOBJ_DTYPE_INT);
+            $this->initVar('credit2', XOBJ_DTYPE_TXTBOX);
+            $this->initVar('cachetime', XOBJ_DTYPE_INT);
+            $this->initVar('expired', XOBJ_DTYPE_INT);
+            $this->initVar('published', XOBJ_DTYPE_INT);
+            $this->initVar('listcache', XOBJ_DTYPE_TXTBOX);
+            $this->initVar('entryperm', XOBJ_DTYPE_TXTBOX);
+            $this->initVar('credit1', XOBJ_DTYPE_TXTBOX);
+            $this->initVar('credit3', XOBJ_DTYPE_TXTBOX);
+            $this->initVar('showinfo', XOBJ_DTYPE_TXTBOX);
+        }
+    }
+
+    //    class webshowWslinksHandler extends ArtObjectHandler
+    class webshowWslinksHandler extends XoopsPersistableObjectHandler
+    {
+        public function __construct(XoopsDatabase $db)
+        {
+            $this->ArtObjectHandler($db, 'webshow_links', 'Wslinks', 'lid', 'title');
+        }
+    }
 }
-?>

@@ -1,9 +1,9 @@
 <?php
-// $Id: webshow_block_tag.php, v.61 2007/07/31 19:59:00 tcnet Exp $ //
+// 
 //  ------------------------------------------------------------------------ //
 //                XOOPS - PHP Content Management System                      //
-//                    Copyright (c) 2000 XOOPS.org                           //
-//                       <http://www.xoops.org/>                             //
+//                  Copyright (c) 2000-2016 XOOPS.org                        //
+//                       <http://xoops.org/>                             //
 //  ------------------------------------------------------------------------ //
 //  This program is free software; you can redistribute it and/or modify     //
 //  it under the terms of the GNU General Public License as published by     //
@@ -27,51 +27,53 @@
 /** Requires Xoops Tag Module
  * Tag management for XOOPS
  *
- * @copyright	The XOOPS project http://www.xoops.org/
- * @license		http://www.fsf.org/copyleft/gpl.html GNU public license
- * @author		Taiwen Jiang (phppp or D.J.) <php_pp@hotmail.com>
- * @since		1.10
- * @version		$Id$
- * @package		module::tag
+ * @copyright      XOOPS Project (http://xoops.org)
+ * @license        http://www.fsf.org/copyleft/gpl.html GNU public license
+ * @author         Taiwen Jiang (phppp or D.J.) <php_pp@hotmail.com>
+ * @since          1.10
+ * @package        module::tag
  */
 /******************************************************************************
-// File: xoops_version.php
+ * // File: xoops_version.php
  *  function webshow_tag_block_cloud_show
- *  $options:  
- *					$options[0] - number of tags to display
- *					$options[1] - time duration, in days, 0 for all the time
- *					$options[2] - max font size (px or %)
- *					$options[3] - min font size (px or %)
-*
-*   function webshow_tag_block_top_show
- *  $options:  
- *					$options[0] - number of tags to display
- *					$options[1] - time duration, in days, 0 for all the time
- *					$options[2] - sort: a - alphabet; c - count; t - time
+ *  $options:
+ *                    $options[0] - number of tags to display
+ *                    $options[1] - time duration, in days, 0 for all the time
+ *                    $options[2] - max font size (px or %)
+ *                    $options[3] - min font size (px or %)
+ *
+ *   function webshow_tag_block_top_show
+ *  $options:
+ *                    $options[0] - number of tags to display
+ *                    $options[1] - time duration, in days, 0 for all the time
+ *                    $options[2] - sort: a - alphabet; c - count; t - time
  ******************************************************************************/
-function webshow_tag_block_cloud_show($options) 
+function webshow_tag_block_cloud_show($options)
 {
-	$module_dirname ="";
-	include_once XOOPS_ROOT_PATH."/modules/tag/blocks/block.php";
-	return tag_block_cloud_show($options, $module_dirname);
+    $module_dirname = '';
+    include_once XOOPS_ROOT_PATH . '/modules/tag/blocks/block.php';
+
+    return tag_block_cloud_show($options, $module_dirname);
 }
 
-function webshow_tag_block_cloud_edit($options) 
+function webshow_tag_block_cloud_edit($options)
 {
-	include_once XOOPS_ROOT_PATH."/modules/tag/blocks/block.php";
-	return tag_block_cloud_edit($options);
+    include_once XOOPS_ROOT_PATH . '/modules/tag/blocks/block.php';
+
+    return tag_block_cloud_edit($options);
 }
 
-function webshow_tag_block_top_show($options) 
+function webshow_tag_block_top_show($options)
 {
-	$module_dirname ="";
-	include_once XOOPS_ROOT_PATH."/modules/tag/blocks/block.php";
-	return tag_block_top_show($options, $module_dirname);
+    $module_dirname = '';
+    include_once XOOPS_ROOT_PATH . '/modules/tag/blocks/block.php';
+
+    return tag_block_top_show($options, $module_dirname);
 }
 
-function webshow_tag_block_top_edit($options) 
+function webshow_tag_block_top_edit($options)
 {
-	include_once XOOPS_ROOT_PATH."/modules/tag/blocks/block.php";
-	return tag_block_top_edit($options);
+    include_once XOOPS_ROOT_PATH . '/modules/tag/blocks/block.php';
+
+    return tag_block_top_edit($options);
 }
-?>

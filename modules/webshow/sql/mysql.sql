@@ -11,7 +11,7 @@ CREATE TABLE webshow_cat (
   catbody text NOT NULL,
   PRIMARY KEY  (cid),
   KEY pid (pid)
-) TYPE=MyISAM;
+) ENGINE=MyISAM;
 
 #
 ## Table structure for table `webshow_links`
@@ -32,7 +32,7 @@ CREATE TABLE webshow_links (
   date int(10) NOT NULL default '0',
   published int(10) unsigned NOT NULL default '0',
   expired int(10) unsigned NOT NULL default '0',
-  entryinfo  varchar(250) NOT NULL default 'dsc logo cred stat rate sbmt pop tag feed site down',  
+  entryinfo  varchar(250) NOT NULL default 'dsc logo cred stat rate sbmt pop tag feed site down',
   entryperm varchar(64) NOT NULL default '',
   entrydownperm varchar(64) NOT NULL default '',
   logourl varchar(255) NOT NULL,
@@ -50,7 +50,7 @@ CREATE TABLE webshow_links (
   PRIMARY KEY  (lid),
   KEY status (status),
   KEY title (title(100))
-) TYPE=MyISAM;
+) ENGINE=MyISAM;
 
 #
 ## Table structure for table `webshow_text`
@@ -61,7 +61,7 @@ CREATE TABLE webshow_text (
   description text NOT NULL,
   bodytext text NOT NULL,
   KEY lid (lid)
-) TYPE=MyISAM;
+) ENGINE=MyISAM;
 
 #
 ## Table structure for table `webshow_mod`
@@ -86,7 +86,7 @@ CREATE TABLE webshow_mod (
   credit3 varchar(100) NOT NULL default '',
   ws_tag varchar(250) NOT NULL default '',
   PRIMARY KEY  (requestid)
-) TYPE=MyISAM;
+) ENGINE=MyISAM;
 
 #
 ## Table structure for table `webshow_flashvar`
@@ -114,7 +114,7 @@ CREATE TABLE webshow_flashvar (
   audio varchar(250) NOT NULL default '',
   PRIMARY KEY  (lid),
   KEY mediatype (mediatype(12))
-) TYPE=MyISAM;
+) ENGINE=MyISAM;
 
 #
 ## Table structure for table `webshow_player`
@@ -124,7 +124,7 @@ CREATE TABLE webshow_player (
   playerid int(11) unsigned NOT NULL auto_increment,
   pid int(11) unsigned NOT NULL default '0',
   playertitle varchar(24) NOT NULL default '',
-  styleoption tinyint(2) NOT NULL default '0', 
+  styleoption tinyint(2) NOT NULL default '0',
   bgcolor varchar(7) NOT NULL default '',
   backcolor varchar(7) NOT NULL default '',
   frontcolor varchar(7) NOT NULL default '',
@@ -138,11 +138,11 @@ CREATE TABLE webshow_player (
   scroll tinyint(2) NOT NULL default '0',
   largecontrol tinyint(2) NOT NULL default '0',
   searchbar tinyint(2) NOT NULL default '0',
-  searchlink varchar(250) NOT NULL default '',  
+  searchlink varchar(250) NOT NULL default '',
   PRIMARY KEY  (playerid),
   KEY pid (pid),
   KEY playertitle (playertitle(24))
-) TYPE=MyISAM;
+) ENGINE=MyISAM;
 
 INSERT INTO `webshow_player` (
 `playerid` ,
@@ -162,7 +162,7 @@ INSERT INTO `webshow_player` (
 `scroll` ,
 `largecontrol`,
 `searchbar` ,
-`searchlink` 
+`searchlink`
 )
 VALUES ('1', '0', 'default', '1', '', '', '', '', '320', '240', '320', '180', '1', '1', '0', '0', '0', '');
 
@@ -179,7 +179,7 @@ CREATE TABLE webshow_theme (
   lightcolor varchar(7) NOT NULL default '',
   PRIMARY KEY  (themeid),
   KEY themetitle (themetitle(24))
-) TYPE=MyISAM;
+) ENGINE=MyISAM;
 
 #
 ## Table structure for table `webshow_broken`
@@ -196,7 +196,7 @@ CREATE TABLE webshow_broken (
   KEY lid (lid),
   KEY sender (sender),
   KEY ip (ip)
-) TYPE=MyISAM;
+) ENGINE=MyISAM;
 
 #
 ## Table structure for table `webshow_votedata`
@@ -212,6 +212,6 @@ CREATE TABLE webshow_votedata (
   PRIMARY KEY  (ratingid),
   KEY ratinguser (ratinguser),
   KEY ratinghostname (ratinghostname)
-) TYPE=MyISAM;
+) ENGINE=MyISAM;
 
 

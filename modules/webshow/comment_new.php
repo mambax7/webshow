@@ -1,9 +1,9 @@
 <?php
-// $Id: comment_new.php,v 1.1 2004/01/29 14:45:56 buennagel Exp $
+// 
 //  ------------------------------------------------------------------------ //
 //                XOOPS - PHP Content Management System                      //
-//                    Copyright (c) 2000 XOOPS.org                           //
-//                       <http://www.xoops.org/>                             //
+//                  Copyright (c) 2000-2016 XOOPS.org                        //
+//                       <http://xoops.org/>                             //
 //  ------------------------------------------------------------------------ //
 //  This program is free software; you can redistribute it and/or modify     //
 //  it under the terms of the GNU General Public License as published by     //
@@ -25,20 +25,19 @@
 //  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307 USA //
 //  ------------------------------------------------------------------------ //
 
-include '../../mainfile.php';
+include dirname(dirname(__DIR__)) . '/mainfile.php';
 // ML hack - added by hsalazar //
 global $myts;
-$myts =& MyTextSanitizer::getInstance();
+$myts = MyTextSanitizer::getInstance();
 // ML hack - added by hsalazar //
-$com_itemid = isset($HTTP_GET_VARS['com_itemid']) ? intval($HTTP_GET_VARS['com_itemid']) : 0;
+$com_itemid = isset($HTTP_GET_VARS['com_itemid']) ? (int)$HTTP_GET_VARS['com_itemid'] : 0;
 if ($com_itemid > 0) {
-	// Get link title
-	$sql = "SELECT title FROM " . $xoopsDB->prefix('webshow_links') . " WHERE lid=" . $com_itemid . "";
-	$result = $xoopsDB->query($sql);
-	$row = $xoopsDB->fetchArray($result);
-	// ML hack - changed by hsalazar //
-	$com_replytitle = $myts->htmlSpecialChars($row['title']);
-	// ML hack - added by hsalazar //
-    include XOOPS_ROOT_PATH.'/include/comment_new.php';
+    // Get link title
+    $sql    = 'SELECT title FROM ' . $xoopsDB->prefix('webshow_links') . ' WHERE lid=' . $com_itemid . '';
+    $result = $xoopsDB->query($sql);
+    $row    = $xoopsDB->fetchArray($result);
+    // ML hack - changed by hsalazar //
+    $com_replytitle = $myts->htmlSpecialChars($row['title']);
+    // ML hack - added by hsalazar //
+    include XOOPS_ROOT_PATH . '/include/comment_new.php';
 }
-?>

@@ -1,9 +1,9 @@
 <?php
-// $Id: notification.inc.php,v 1.1 2004/01/29 14:45:57 buennagel Exp $
+// 
 //  ------------------------------------------------------------------------ //
 //                XOOPS - PHP Content Management System                      //
-//                    Copyright (c) 2000 XOOPS.org                           //
-//                       <http://www.xoops.org/>                             //
+//                  Copyright (c) 2000-2016 XOOPS.org                        //
+//                       <http://xoops.org/>                             //
 //  ------------------------------------------------------------------------ //
 //  This program is free software; you can redistribute it and/or modify     //
 //  it under the terms of the GNU General Public License as published by     //
@@ -24,49 +24,51 @@
 //  along with this program; if not, write to the Free Software              //
 //  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307 USA //
 //  ------------------------------------------------------------------------ //
-if (!defined('XOOPS_ROOT_PATH')){ exit(); }
+// defined('XOOPS_ROOT_PATH') || exit('XOOPS root path not defined');
 
 function webshow_notify_iteminfo($category, $item_id)
 {
-	global $xoopsModule, $xoopsModuleConfig, $xoopsConfig;
+    global $xoopsModule, $xoopsModuleConfig, $xoopsConfig;
 
-	if (empty($xoopsModule) || $xoopsModule->getVar('dirname') != 'webshow') {	
-		$module_handler =& xoops_gethandler('module');
-		$module =& $module_handler->getByDirname('webshow');
-		$config_handler =& xoops_gethandler('config');
-		$config =& $config_handler->getConfigsByCat(0,$module->getVar('mid'));
-	} else {
-		$module =& $xoopsModule;
-		$config =& $xoopsModuleConfig;
-	}
+    if (empty($xoopsModule) || $xoopsModule->getVar('dirname') != 'webshow') {
+        $moduleHandler  = xoops_getHandler('module');
+        $module         = $moduleHandler->getByDirname('webshow');
+        $config_handler = xoops_getHandler('config');
+        $config         = $config_handler->getConfigsByCat(0, $module->getVar('mid'));
+    } else {
+        $module = $xoopsModule;
+        $config = $xoopsModuleConfig;
+    }
 
-	//include_once XOOPS_ROOT_PATH . '/modules/' . $module->getVar('dirname') . '/language/' . $xoopsConfig['language'] . '/main.php';
+    //include_once XOOPS_ROOT_PATH . '/modules/' . $module->getVar('dirname') . '/language/' . $xoopsConfig['language'] . '/main.php';
 
-	if ($category=='global') {
-		$item['name'] = '';
-		$item['url'] = '';
-		return $item;
-	}
+    if ($category == 'global') {
+        $item['name'] = '';
+        $item['url']  = '';
 
-	global $xoopsDB;
-	if ($category=='category') {
-		// Assume we have a valid category id
-		$sql = 'SELECT title FROM ' . $xoopsDB->prefix('webshow_cat') . ' WHERE cid = '.$item_id;
-		$result = $xoopsDB->query($sql); // TODO: error check
-		$result_array = $xoopsDB->fetchArray($result);
-		$item['name'] = $result_array['title'];
-		$item['url'] = XOOPS_URL . '/modules/' . $module->getVar('dirname') . '/viewcat.php?cid=' . $item_id;
-		return $item;
-	}
+        return $item;
+    }
 
-	if ($category=='link') {
-		// Assume we have a valid link id
-		$sql = 'SELECT cid,title FROM '.$xoopsDB->prefix('webshow_links') . ' WHERE lid = ' . $item_id;
-		$result = $xoopsDB->query($sql); // TODO: error check
-		$result_array = $xoopsDB->fetchArray($result);
-		$item['name'] = $result_array['title'];
-		$item['url'] = XOOPS_URL . '/modules/' . $module->getVar('dirname') . '/singlelink.php?lid=' . $item_id;
-		return $item;
-	}
+    global $xoopsDB;
+    if ($category == 'category') {
+        // Assume we have a valid category id
+        $sql          = 'SELECT title FROM ' . $xoopsDB->prefix('webshow_cat') . ' WHERE cid = ' . $item_id;
+        $result       = $xoopsDB->query($sql); // TODO: error check
+        $result_array = $xoopsDB->fetchArray($result);
+        $item['name'] = $result_array['title'];
+        $item['url']  = XOOPS_URL . '/modules/' . $module->getVar('dirname') . '/viewcat.php?cid=' . $item_id;
+
+        return $item;
+    }
+
+    if ($category == 'link') {
+        // Assume we have a valid link id
+        $sql          = 'SELECT cid,title FROM ' . $xoopsDB->prefix('webshow_links') . ' WHERE lid = ' . $item_id;
+        $result       = $xoopsDB->query($sql); // TODO: error check
+        $result_array = $xoopsDB->fetchArray($result);
+        $item['name'] = $result_array['title'];
+        $item['url']  = XOOPS_URL . '/modules/' . $module->getVar('dirname') . '/singlelink.php?lid=' . $item_id;
+
+        return $item;
+    }
 }
-?>

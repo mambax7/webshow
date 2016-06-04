@@ -1,13 +1,13 @@
 <?php
-// $Id: view.tag.php,v.59 2007/07/18 10:47:00 tcnet Exp $ //
+// 
 // Flash Media Player by Jereon Wijering ( http://www.jeroenwijering.com ) is licensed under a Creative Commons License (http://creativecommons.org/licenses/by-nc-sa/2.0/) //
 // It allows you to use and modify the script for noncommercial purposes. //
-// You must share a like any modifications. // 
+// You must share a like any modifications. //
 // For commercial use you must purchase a license from Jereon Wijering at http://www.jeroenwijering.com/?order=form. //
 //  ------------------------------------------------------------------------ //
 //                XOOPS - PHP Content Management System                      //
-//                    Copyright (c) 2000 XOOPS.org                           //
-//                       <http://www.xoops.org/>                             //
+//                  Copyright (c) 2000-2016 XOOPS.org                        //
+//                       <http://xoops.org/>                             //
 //  ------------------------------------------------------------------------ //
 //  This program is free software; you can redistribute it and/or modify     //
 //  it under the terms of the GNU General Public License as published by     //
@@ -31,6 +31,5 @@
 
 // Requires phppp's Tag Module
 // File: view.tag.php
-include "header.php";
-include XOOPS_ROOT_PATH."/modules/tag/view.tag.php";
-?>
+include __DIR__ . '/header.php';
+include XOOPS_ROOT_PATH . '/modules/tag/view.tag.php';

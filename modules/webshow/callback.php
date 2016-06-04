@@ -1,9 +1,9 @@
 <?php
-// $Id: statistics.php, webshow v.63 2008/02/02 19:59:00 tcnet Exp $ //
+// 
 //  ------------------------------------------------------------------------ //
 //                XOOPS - PHP Content Management System                      //
-//                    Copyright (c) 2000 XOOPS.org                           //
-//                       <http://www.xoops.org/>                             //
+//                  Copyright (c) 2000-2016 XOOPS.org                        //
+//                       <http://xoops.org/>                             //
 // ------------------------------------------------------------------------- //
 //  This program is free software; you can redistribute it and/or modify     //
 //  it under the terms of the GNU General Public License as published by     //
@@ -28,28 +28,27 @@
 //** The JW Player callback function returns $title, $id, $file, $state, $duration
 //** $somecontent = "$title (id $id): $file $state ($duration sec.)";
 //** This counts media views and logs the start event using callback function of JW Player
-include "header.php";
-include XOOPS_ROOT_PATH."/header.php";
-extract($_POST, EXTR_PREFIX_SAME, "post_");
-$time = formatTimestamp(time(),"m");
-$ref= $_SERVER['HTTP_REFERER'];
+include __DIR__ . '/header.php';
+include XOOPS_ROOT_PATH . '/header.php';
+extract($_POST, EXTR_PREFIX_SAME, 'post_');
+$time = formatTimestamp(time(), 'm');
+$ref  = $_SERVER['HTTP_REFERER'];
 //$agent= $_SERVER['HTTP_USER_AGENT'];
-$ip= $_SERVER['REMOTE_ADDR'];
+$ip      = $_SERVER['REMOTE_ADDR'];
 $logfile = 'admin/log.txt';
 
-if ($state == "start"){
-   //** Collect start event data
-   $event = "$time,$ref,$ip,$state,$id,$title,$file\r\n";
-  // Write to log file.
-  if (is_writable($logfile)) {
-   if (!$handle = fopen($logfile, 'a')) {
-         exit;
-   }
-   if (fwrite($handle, "$event") === FALSE) {
-       exit;
-   }   
-   fclose($handle);
-  }
+if ($state == 'start') {
+    //** Collect start event data
+    $event = "$time,$ref,$ip,$state,$id,$title,$file\r\n";
+    // Write to log file.
+    if (is_writable($logfile)) {
+        if (!$handle = fopen($logfile, 'a')) {
+            exit;
+        }
+        if (fwrite($handle, "$event") === false) {
+            exit;
+        }
+        fclose($handle);
+    }
 }
 exit;
-?>

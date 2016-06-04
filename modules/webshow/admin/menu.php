@@ -1,13 +1,13 @@
 <?php
-// $Id: menu.php,v.50 2007/03/01 19:59:00 tcnet Exp $ //
+// 
 // Flash Media Player by Jereon Wijering ( http://www.jeroenwijering.com ) is licensed under a Creative Commons License (http://creativecommons.org/licenses/by-nc-sa/2.0/) //
 // It allows you to use and modify the script for noncommercial purposes. //
-// You must share a like any modifications. // 
+// You must share a like any modifications. //
 // For commercial use you must purchase a license from Jereon Wijering at http://www.jeroenwijering.com/?order=form. //
 //  ------------------------------------------------------------------------ //
 //                XOOPS - PHP Content Management System                      //
-//                    Copyright (c) 2000 XOOPS.org                           //
-//                       <http://www.xoops.org/>                             //
+//                  Copyright (c) 2000-2016 XOOPS.org                        //
+//                       <http://xoops.org/>                             //
 //  ------------------------------------------------------------------------ //
 //  This program is free software; you can redistribute it and/or modify     //
 //  it under the terms of the GNU General Public License as published by     //
@@ -28,27 +28,72 @@
 //  along with this program; if not, write to the Free Software              //
 //  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307 USA //
 //  ------------------------------------------------------------------------ //
+// defined('XOOPS_ROOT_PATH') || exit('XOOPS root path not defined');
 
-$adminmenu[1]['title'] = _MI_WEBSHOW_ADMENU1;
-$adminmenu[1]['link'] = "admin/index.php";
-$adminmenu[2]['title'] = _MI_WEBSHOW_ADMENU2;
-$adminmenu[2]['link'] = "admin/category.php?op=newCat";
-$adminmenu[3]['title'] = _MI_WEBSHOW_ADMENU3;
-$adminmenu[3]['link'] = "admin/index.php?op=newLink";
-$adminmenu[4]['title'] = _MI_WEBSHOW_ADMENU4;
-$adminmenu[4]['link'] = "admin/flashconfig.php";
-$adminmenu[5]['title'] = _MI_WEBSHOW_ADMENU5;
-$adminmenu[5]['link'] = "admin/player.php?op=newPlayer";
-$adminmenu[6]['title'] = _MI_WEBSHOW_ADMENU6;
-$adminmenu[6]['link'] = "admin/perm.php";
-$adminmenu[7]['title'] = _MI_WEBSHOW_ADMENU7;
-$adminmenu[7]['link'] = "admin/index.php?op=listNewLinks";
-$adminmenu[8]['title'] = _MI_WEBSHOW_ADMENU8;
-$adminmenu[8]['link'] = "admin/index.php?op=listBrokenLinks";
-$adminmenu[9]['title'] = _MI_WEBSHOW_ADMENU9;
-$adminmenu[9]['link'] = "admin/index.php?op=listModReq";
-$adminmenu[10]['title'] = _MI_WEBSHOW_ADMENU10;
-$adminmenu[10]['link'] = "admin/index.php?op=webShowHelp";
-$adminmenu[11]['title'] = _MI_WEBSHOW_ADMENU11;
-$adminmenu[11]['link'] = 'index.php';
-?>
+//$path = dirname(dirname(dirname(__DIR__)));
+//include_once $path . '/mainfile.php';
+
+$moduleHandler = xoops_getHandler('module');
+$module        = $moduleHandler->getByDirname(basename(dirname(__DIR__)));
+$pathIcon32    = '../../' . $module->getInfo('icons32');
+xoops_loadLanguage('modinfo', $module->dirname());
+
+$pathModuleAdmin = XOOPS_ROOT_PATH . '/' . $module->getInfo('dirmoduleadmin') . '/moduleadmin';
+if (!file_exists($fileinc = $pathModuleAdmin . '/language/' . $GLOBALS['xoopsConfig']['language'] . '/' . 'main.php')) {
+    $fileinc = $pathModuleAdmin . '/language/english/main.php';
+}
+include_once $fileinc;
+
+$adminmenu              = array();
+$i                      = 0;
+$adminmenu[$i]['title'] = _AM_MODULEADMIN_HOME;
+$adminmenu[$i]['link']  = 'admin/index.php';
+$adminmenu[$i]['icon']  = $pathIcon32 . '/home.png';
+++$i;
+$adminmenu[$i]['title'] = _MI_WEBSHOW_ADMENU1;
+$adminmenu[$i]['link']  = 'admin/main.php';
+$adminmenu[$i]['icon']  = $pathIcon32 . '/manage.png';
+++$i;
+$adminmenu[$i]['title'] = _MI_WEBSHOW_ADMENU2;
+$adminmenu[$i]['link']  = 'admin/category.php?op=newCat';
+$adminmenu[$i]['icon']  = $pathIcon32 . '/manage.png';
+++$i;
+$adminmenu[$i]['title'] = _MI_WEBSHOW_ADMENU3;
+$adminmenu[$i]['link']  = 'admin/main.php?op=newLink';
+$adminmenu[$i]['icon']  = $pathIcon32 . '/manage.png';
+++$i;
+$adminmenu[$i]['title'] = _MI_WEBSHOW_ADMENU4;
+$adminmenu[$i]['link']  = 'admin/flashconfig.php';
+$adminmenu[$i]['icon']  = $pathIcon32 . '/manage.png';
+++$i;
+$adminmenu[$i]['title'] = _MI_WEBSHOW_ADMENU5;
+$adminmenu[$i]['link']  = 'admin/player.php?op=newPlayer';
+$adminmenu[$i]['icon']  = $pathIcon32 . '/manage.png';
+++$i;
+$adminmenu[$i]['title'] = _MI_WEBSHOW_ADMENU6;
+$adminmenu[$i]['link']  = 'admin/perm.php';
+$adminmenu[$i]['icon']  = $pathIcon32 . '/manage.png';
+++$i;
+$adminmenu[$i]['title'] = _MI_WEBSHOW_ADMENU7;
+$adminmenu[$i]['link']  = 'admin/main.php?op=listNewLinks';
+$adminmenu[$i]['icon']  = $pathIcon32 . '/manage.png';
+++$i;
+$adminmenu[$i]['title'] = _MI_WEBSHOW_ADMENU8;
+$adminmenu[$i]['link']  = 'admin/main.php?op=listBrokenLinks';
+$adminmenu[$i]['icon']  = $pathIcon32 . '/manage.png';
+++$i;
+$adminmenu[$i]['title'] = _MI_WEBSHOW_ADMENU9;
+$adminmenu[$i]['link']  = 'admin/main.php?op=listModReq';
+$adminmenu[$i]['icon']  = $pathIcon32 . '/manage.png';
+++$i;
+$adminmenu[$i]['title'] = _MI_WEBSHOW_ADMENU10;
+$adminmenu[$i]['link']  = 'admin/main.php?op=webShowHelp';
+$adminmenu[$i]['icon']  = $pathIcon32 . '/manage.png';
+++$i;
+$adminmenu[$i]['title'] = _MI_WEBSHOW_ADMENU11;
+$adminmenu[$i]['link']  = 'index.php';
+$adminmenu[$i]['icon']  = $pathIcon32 . '/manage.png';
+++$i;
+$adminmenu[$i]['title'] = _AM_MODULEADMIN_ABOUT;
+$adminmenu[$i]['link']  = 'admin/about.php';
+$adminmenu[$i]['icon']  = $pathIcon32 . '/about.png';
